@@ -7,14 +7,32 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 
-Flat.create!(
-  name: 'Garden Flat London',
-  address: '10 Clifton Gardens London W9 1DT',
-  description: 'A lovely summer feel for this spacious garden flat. Two double bedrooms, open plan living area, large kitchen and a beautiful conservatory',
-  rooms: 3,
-  country: "United Kingdom",
-  city: "London",
-  price_per_night: 75,
-  number_of_guests: 3,
-  user_id: 1
-)
+# Flat.create!(
+#   name: 'Garden Flat London',
+#   address: '10 Clifton Gardens London W9 1DT',
+#   description: 'A lovely summer feel for this spacious garden flat. Two double bedrooms, open plan living area, large kitchen and a beautiful conservatory',
+#   rooms: 3,
+#   country: "United Kingdom",
+#   city: "London",
+#   price_per_night: 75,
+#   number_of_guests: 3,
+#   user_id: 1
+# )
+puts "deleting users...."
+User.delete_all
+puts "seeding users"
+10.times do |n|
+    user = User.new
+    user.first_name = Faker::Name.name
+    user.last_name = Faker::Name.name
+    user.email = Faker::Name.name
+    user.save
+    puts "created the user #{user.first_name} #{user.last_name}"
+end
+puts "database seeded with users...."
+
+20.times do
+  @user = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: '123456')
+  flat = Flat.create!(name: Faker::Superhero.name, price_per_night: rand(2...100), user: @user, address: "London" )
+end
+

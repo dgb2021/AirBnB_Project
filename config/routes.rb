@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-
   root to: "pages#home"
-  get "/about", to: "pages#about"
-  get "/index", to: "flats#index"
+
+  resources :flats, only: [:index, :create, :new]
 end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

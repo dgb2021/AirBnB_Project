@@ -1,0 +1,24 @@
+<h1>Add a new flat</h1>
+
+  <div>
+    <%= link_to 'Home', root_path, :class => "btn btn-primary" %> 
+    <%= link_to 'Add Flat', new_flat_path, :class => "btn btn-primary" %> 
+  </div>
+
+
+<div class="container">
+  <div class="row mt-4">
+    <div class="spacer col-4"></div>
+    <div class="new-listing col-4">
+      <h2>List your flat for rent</h2>
+      <%= simple_form_for @flat do |f| %>
+      <%= f.input :name %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
+

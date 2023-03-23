@@ -13,6 +13,13 @@
       <h2>List your flat for rent</h2>
       <%= simple_form_for @flat do |f| %>
       <%= f.input :name %>
+      <%= f.input :description %>
+      <%= f.input :city %>
+      <%= f.input :address %>
+      <%= f.input :rooms %>
+      <%= f.input :number_of_guests %>
+      <%= f.input :price_per_night %>
+      <%= f.submit "Add Flat", class: "btn btn-primary" %>
       <% end %>
     </div>
   </div>

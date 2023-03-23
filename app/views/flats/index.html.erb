@@ -30,7 +30,18 @@
               <div class="flex align-items-center ms-3">
                 <i class="fa-solid fa-euro-sign"></i>
                 <span><%= flat.price_per_night %></span>
-                <%= link_to "More info...", flat_path(flat)  %>
+              <div class="flat-card-actions">
+              <% if flat.user == current_user %>
+                <%= link_to "More info", flat_path(flat) %>
+                <%= link_to "Edit", edit_flat_path(flat), class: "ms-3 text-warning" %>
+                <%= link_to "Remove", flat_path(flat),
+                    data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                    class: "ms-3 text-danger"
+                %>
+                <% else %>
+                  <%= link_to "More info", flat_path(flat) %>
+                <% end %>
+              </div>
               </div>
             </div>
           </div>

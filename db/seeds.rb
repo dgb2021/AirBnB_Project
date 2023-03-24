@@ -18,21 +18,20 @@
 #   number_of_guests: 3,
 #   user_id: 1
 # )
-puts "deleting users...."
-User.delete_all
-puts "seeding users"
-10.times do |n|
-    user = User.new
-    user.first_name = Faker::Name.name
-    user.last_name = Faker::Name.name
-    user.email = Faker::Name.name
-    user.save
-    puts "created the user #{user.first_name} #{user.last_name}"
-end
-puts "database seeded with users...."
 
-20.times do
+require 'faker'
+
+@first_user = User.create!(first_name: "Doug", last_name: "Barr", email: "doug@gmail.com", password: '123456')
+
+puts "deleting Users & Flats...."
+User.delete_all
+Flat.delete_all
+puts "seeding users and flats"
+
+10.times do
   @user = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: '123456')
-  flat = Flat.create!(name: Faker::Superhero.name, price_per_night: rand(2...100), user: @user, address: "London" )
+  flat = Flat.create!(name: Faker::Superhero.name, price_per_night: rand(2...100), user: @user, address: "London", description: "Lovely large apartment", city: "London", rooms: rand(2...9), number_of_guests: rand(2...12,) )
 end
+
+puts "Database seeded..."
 

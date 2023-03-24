@@ -30,7 +30,9 @@ puts "seeding users and flats"
 
 10.times do
   @user = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: '123456')
+  @user.save
   flat = Flat.create!(name: Faker::Superhero.name, price_per_night: rand(2...100), user: @user, address: "London", description: "Lovely large apartment", city: "London", rooms: rand(2...9), number_of_guests: rand(2...12,) )
+  flat.save
 end
 
 puts "Database seeded..."
